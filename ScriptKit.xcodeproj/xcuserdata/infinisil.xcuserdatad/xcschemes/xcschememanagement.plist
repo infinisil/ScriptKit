@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Example.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>ScriptKit.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +23,11 @@
 			<true/>
 		</dict>
 		<key>B677B3F31D403D4C00D2A4CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B677B40E1D40483000D2A4CF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

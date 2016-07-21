@@ -83,17 +83,17 @@ let nsecPerSec = Double(NSEC_PER_SEC)
 final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 	
 	/// Used to do all the script work
-    let workQueue = dispatch_get_global_queue(QOS_CLASS_BACKGROUND, 0)
+    let workQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
 	
 	/// Used for unimportant meta stuff
-	let metaQueue = dispatch_queue_create("MetaQueue", DISPATCH_QUEUE_CONCURRENT)
+	public let metaQueue = dispatch_queue_create("MetaQueue", DISPATCH_QUEUE_CONCURRENT)
 	
 	/// When this group is done, the script finishes
 	let mainGroup = dispatch_group_create()
 	
 	/// Starting index
-	var index : Int32 = 0
-	var terminationDelay: NSTimeInterval = 0
+	var index : Int32 = -1
+	public var terminationDelay: NSTimeInterval = 0
 	var script : S!
 	
 	override init() {
@@ -115,7 +115,7 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 		return false
 	}
 	
-	func invokeMain(context: S.Context? = nil) {
+    public func invokeMain(context context: S.Context? = nil) {
 		work(context)
 	}
 	
@@ -147,11 +147,11 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 		}
 	}
 	
-	private(set) var cancelled = false
+	internal(set) public var cancelled = false
 	
-	var cancellationHandler : (() -> ())?
+	public var cancellationHandler : (() -> ())?
 	
-	func terminate(after delay: NSTimeInterval = 0) {
+	public func terminate(after delay: NSTimeInterval = 0) {
 		func terminateNow() {
 			self.script.tearDown(self)
 			self.script = nil
