@@ -91,3 +91,4 @@ swiftREPL.input("let x = 10; print(x * 2)")
 
 - Xcode template for a script that starts at login, supporting the `Script` protocol
 - Convenient `NSStatusItem` support (the little icon it the menu bar)
+- Add tests
