@@ -9,10 +9,6 @@
 import Cocoa
 import Carbon
 
-private func strToUInt(str: String) -> UInt32 {
-    return str.utf8.reduce(0) { $0 << 8 | UInt32($1) }
-}
-
 public struct Hotkey {
     public struct Modifiers : OptionSetType {
         public let rawValue: Int

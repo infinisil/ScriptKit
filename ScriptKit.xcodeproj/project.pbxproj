@@ -17,6 +17,7 @@
 		B677B41F1D40484700D2A4CF /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677B41E1D40484700D2A4CF /* main.swift */; };
 		B677B4221D404EB400D2A4CF /* ScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B677B3EA1D403D4C00D2A4CF /* ScriptKit.framework */; };
 		B677B4231D404EB400D2A4CF /* ScriptKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B677B3EA1D403D4C00D2A4CF /* ScriptKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B68D73A21D41A4FD0098FC03 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68D73A11D41A4FD0098FC03 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B677B40F1D40483000D2A4CF /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B677B41A1D40483000D2A4CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B677B41E1D40484700D2A4CF /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		B68D73A11D41A4FD0098FC03 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 			children = (
 				B677B4021D403D6300D2A4CF /* Script.swift */,
 				B677B4041D403FEE00D2A4CF /* Hotkey.swift */,
+				B68D73A11D41A4FD0098FC03 /* Utils.swift */,
 				B677B4071D4040C500D2A4CF /* Console.swift */,
 				B677B4091D40421F00D2A4CF /* Files.swift */,
 				B677B3F81D403D4C00D2A4CF /* Tests */,
@@ -292,6 +295,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B68D73A21D41A4FD0098FC03 /* Utils.swift in Sources */,
 				B677B4031D403D6300D2A4CF /* Script.swift in Sources */,
 				B677B40A1D40421F00D2A4CF /* Files.swift in Sources */,
 				B677B4081D4040C500D2A4CF /* Console.swift in Sources */,
@@ -658,6 +662,7 @@
 				B677B3FE1D403D4C00D2A4CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B677B3FF1D403D4C00D2A4CF /* Build configuration list for PBXNativeTarget "ScriptKitTests" */ = {
 			isa = XCConfigurationList;
@@ -666,6 +671,7 @@
 				B677B4011D403D4C00D2A4CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B677B41B1D40483000D2A4CF /* Build configuration list for PBXNativeTarget "Example" */ = {
 			isa = XCConfigurationList;
@@ -674,6 +680,7 @@
 				B677B41D1D40483000D2A4CF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

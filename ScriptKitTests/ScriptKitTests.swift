@@ -10,27 +10,18 @@ import XCTest
 @testable import ScriptKit
 
 class ScriptKitTests: XCTestCase {
-    
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
-    
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
+    func testFourCharCode() {
+        func t(string: String, _ fourCharCode: UInt32, line: UInt = #line) {
+            let actual = string.fourCharCode
+            XCTAssertEqual(actual, fourCharCode, "Four char code of \"\(string)\" should be 0x\(String(fourCharCode, radix: 16)) but was 0x\(String(actual, radix: 16))", line: line)
         }
-    }
     
+        t("", 0)
+        t("\0\0\0\0", 0)
+        t("0000", 0x30303030)
+        t("1234", 0x31323334)
+        t("Test", 0x54657374)
+        t("What in the heavens", 0x57686174)
+        t("a", 0x61)
+    }
 }
