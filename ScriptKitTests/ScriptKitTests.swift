@@ -21,7 +21,8 @@ class ScriptKitTests: XCTestCase {
         t("0000", 0x30303030)
         t("1234", 0x31323334)
         t("Test", 0x54657374)
-        t("What in the heavens", 0x57686174)
+        t("What in the heavens", 0x76656e73)
         t("a", 0x61)
+		t("😂", 0xf09f9882)
     }
 }

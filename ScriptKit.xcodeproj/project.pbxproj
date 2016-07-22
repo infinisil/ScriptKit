@@ -120,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				B677B3EC1D403D4C00D2A4CF /* ScriptKit */,
-				B68D73A81D41A58A0098FC03 /* KeycodeGenerator */,
 				B677B4101D40483000D2A4CF /* Example */,
 				B677B3EB1D403D4C00D2A4CF /* Products */,
 			);
@@ -146,6 +145,7 @@
 				B68D73A11D41A4FD0098FC03 /* Utils.swift */,
 				B677B4071D4040C500D2A4CF /* Console.swift */,
 				B677B4091D40421F00D2A4CF /* Files.swift */,
+				B68D73A81D41A58A0098FC03 /* KeycodeGenerator */,
 				B677B3F81D403D4C00D2A4CF /* Tests */,
 				B677B4061D4040A400D2A4CF /* Supporting Files */,
 			);
@@ -185,7 +185,8 @@
 			children = (
 				B68D73A91D41A58A0098FC03 /* main.swift */,
 			);
-			path = KeycodeGenerator;
+			name = KeycodeGenerator;
+			path = ../KeycodeGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

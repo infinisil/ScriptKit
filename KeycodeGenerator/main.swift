@@ -10,7 +10,7 @@ import Foundation
 
 let relativeKeyCodesFilePath = "/ScriptKit/KeyCodes.swift"
 let sourceFilePath = "/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h"
-let keyword = "DOIT" // Everthing before and including the first appearance of this keyword won't be overridden
+let keyword = "DOIT" // Everthing before the first appearance of this keyword won't be overridden
 
 let keyCodesFilePath = Process.arguments[1] + relativeKeyCodesFilePath
 var contents = try! String(contentsOfFile: keyCodesFilePath)
