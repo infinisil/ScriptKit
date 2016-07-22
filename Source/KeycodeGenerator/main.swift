@@ -8,7 +8,7 @@
 
 import Foundation
 
-let relativeKeyCodesFilePath = "/ScriptKit/KeyCodes.swift"
+let relativeKeyCodesFilePath = "/Source/KeyCodes.swift"
 let sourceFilePath = "/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h"
 let keyword = "DOIT" // Everthing before the first appearance of this keyword won't be overridden
 

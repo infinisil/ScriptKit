@@ -119,7 +119,7 @@
 		B677B3DE1D403C4900D2A4CF = {
 			isa = PBXGroup;
 			children = (
-				B677B3EC1D403D4C00D2A4CF /* ScriptKit */,
+				B677B3EC1D403D4C00D2A4CF /* Source */,
 				B677B4101D40483000D2A4CF /* Example */,
 				B677B3EB1D403D4C00D2A4CF /* Products */,
 			);
@@ -136,7 +136,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B677B3EC1D403D4C00D2A4CF /* ScriptKit */ = {
+		B677B3EC1D403D4C00D2A4CF /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				B677B4021D403D6300D2A4CF /* Script.swift */,
@@ -149,7 +149,7 @@
 				B677B3F81D403D4C00D2A4CF /* Tests */,
 				B677B4061D4040A400D2A4CF /* Supporting Files */,
 			);
-			path = ScriptKit;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		B677B3F81D403D4C00D2A4CF /* Tests */ = {
@@ -158,8 +158,7 @@
 				B677B3F91D403D4C00D2A4CF /* ScriptKitTests.swift */,
 				B677B3FB1D403D4C00D2A4CF /* Info.plist */,
 			);
-			name = Tests;
-			path = ScriptKitTests;
+			path = Tests;
 			sourceTree = SOURCE_ROOT;
 		};
 		B677B4061D4040A400D2A4CF /* Supporting Files */ = {
@@ -185,8 +184,7 @@
 			children = (
 				B68D73A91D41A58A0098FC03 /* main.swift */,
 			);
-			name = KeycodeGenerator;
-			path = ../KeycodeGenerator;
+			path = KeycodeGenerator;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -453,7 +451,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ScriptKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -506,7 +504,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ScriptKit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Source/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.9;
@@ -558,7 +556,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ScriptKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -602,7 +600,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = ScriptKitTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
