@@ -24,18 +24,32 @@ if let range = contents.rangeOfString(keyword) {
 contents += "\n\n"
 contents += "public extension Hotkey {\n"
 contents += "\t/// Virtual keycodes defined in `\(sourceFilePath)`\n"
-contents += "\tpublic enum Key : UInt32 {\n"
+contents += "\tpublic enum Key : UInt32, CustomStringConvertible, Equatable {\n"
 
 let sourceLines = try! String(contentsOfFile: sourceFilePath).characters.split("\n")
+let relevantLines = sourceLines.filter{ $0.startsWith("  kVK_".characters) }
+let keys : [(String, String)] = relevantLines.map{ line in
+	let parts = line.dropFirst(6).split(" ", allowEmptySlices: false)
+	
+	let name = String(parts[0])
+	let value = String(parts[2].prefix(4))
+	
+	return (name, value)
+}
 
-for line in sourceLines where line.startsWith("  kVK_".characters) {
-    let parts = line.dropFirst(6).split(" ", allowEmptySlices: false)
-    
-    let name = String(parts[0])
-    let value = String(parts[2].prefix(4))
-    
+for (name, value) in keys {
     contents += "\t\tcase \(name) = \(value)\n"
 }
+
+contents += "\n\n\t\tpublic var description : String {\n"
+contents += "\t\t\tswitch self {\n"
+
+for (name, _) in keys {
+	let start = name.characters.indexOf("_")?.successor() ?? name.startIndex
+	contents += "\t\t\tcase \(name): return \"\(name.substringFromIndex(start))\"\n"
+}
+
+contents += "\t\t\t}\n\t\t}\n\n"
 
 contents += "\t}\n}\n"
 

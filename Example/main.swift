@@ -16,7 +16,7 @@ final class MyScript : Script {
         manager.terminationDelay = 5
         
         HotkeyManager.register([.Command, .Shift] + .ANSI_0) { hotkey in
-            manager.invokeMain(context: "⌘⇧-0 was pressed!")
+            manager.invokeMain(context: "\(hotkey) was pressed!")
         }
     }
     

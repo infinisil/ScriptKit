@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B662800E1D41FAE4008F25EB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B662800D1D41FAE4008F25EB /* README.md */; };
 		B677B3EE1D403D4C00D2A4CF /* ScriptKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B677B3ED1D403D4C00D2A4CF /* ScriptKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B677B3F51D403D4C00D2A4CF /* ScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B677B3EA1D403D4C00D2A4CF /* ScriptKit.framework */; };
 		B677B3FA1D403D4C00D2A4CF /* ScriptKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B677B3F91D403D4C00D2A4CF /* ScriptKitTests.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B662800D1D41FAE4008F25EB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B677B3EA1D403D4C00D2A4CF /* ScriptKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScriptKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B677B3ED1D403D4C00D2A4CF /* ScriptKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptKit.h; sourceTree = "<group>"; };
 		B677B3EF1D403D4C00D2A4CF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 		B677B3DE1D403C4900D2A4CF = {
 			isa = PBXGroup;
 			children = (
+				B662800D1D41FAE4008F25EB /* README.md */,
 				B677B3EC1D403D4C00D2A4CF /* Source */,
 				B677B4101D40483000D2A4CF /* Example */,
 				B677B3EB1D403D4C00D2A4CF /* Products */,
@@ -350,6 +353,7 @@
 				B68D73AF1D41AAC20098FC03 /* KeyCodes.swift in Sources */,
 				B68D73A21D41A4FD0098FC03 /* Utils.swift in Sources */,
 				B677B4031D403D6300D2A4CF /* Script.swift in Sources */,
+				B662800E1D41FAE4008F25EB /* README.md in Sources */,
 				B677B40A1D40421F00D2A4CF /* Files.swift in Sources */,
 				B677B4081D4040C500D2A4CF /* Console.swift in Sources */,
 				B677B4051D403FEE00D2A4CF /* Hotkey.swift in Sources */,
