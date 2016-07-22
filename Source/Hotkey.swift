@@ -38,6 +38,17 @@ extension Hotkey {
     }
 }
 
+extension CGEventFlags {
+	var modifiers : Hotkey.Modifiers {
+		var mods : Hotkey.Modifiers = []
+		if CGEventFlags.MaskControl.rawValue & rawValue > 0 { mods.unionInPlace(.Control) }
+		if CGEventFlags.MaskShift.rawValue & rawValue > 0 { mods.unionInPlace(.Shift) }
+		if CGEventFlags.MaskAlternate.rawValue & rawValue > 0 { mods.unionInPlace(.Option) }
+		if CGEventFlags.MaskCommand.rawValue & rawValue > 0 { mods.unionInPlace(.Command) }
+		return mods
+	}
+}
+
 public struct Hotkey : CustomStringConvertible, Hashable {
     public let modifiers : Modifiers
     public let key : Key
@@ -51,7 +62,6 @@ public struct Hotkey : CustomStringConvertible, Hashable {
 	}
 	
     public init(modifiers: Modifiers, key: Key) {
-		precondition(!modifiers.isEmpty, "Cannot create hotkey without any modifiers. Key was \(key)")
         self.modifiers = modifiers
         self.key = key
     }
@@ -83,58 +93,4 @@ public func +(modifiers: Hotkey.Modifiers, key: Hotkey.Key) -> Hotkey {
 public func -(modifiers: Hotkey.Modifiers, key: Hotkey.Key) -> Hotkey {
     return Hotkey(modifiers: modifiers, key: key)
 }
-
-public let HotkeyManager = HotkeyManagerClass.shared
-
-public class HotkeyManagerClass {
-    public typealias Handler = (Hotkey) -> Void
-    
-    let signature = OSType(truncatingBitPattern: NSBundle.mainBundle().bundleIdentifier?.hashValue ?? 0)
-    
-    var target : EventTargetRef = nil
-    
-    var handlers : [Hotkey : (EventHotKeyRef, Handler)] = [:]
-    let handlerQueue = dispatch_queue_create("\(NSBundle.mainBundle().bundleIdentifier ?? "*").HotkeyHandler", DISPATCH_QUEUE_CONCURRENT)
-    
-    public static let shared = HotkeyManagerClass()
-    
-    private init() {
-        self.target = GetEventDispatcherTarget()
-        
-        var keyDownEventType = EventTypeSpec(eventClass: OSType(kEventClassKeyboard), eventKind: UInt32(kEventHotKeyPressed))
-        
-        let handler : EventHandlerUPP = { nextHandler, event, `self` in
-            let `self` = unsafeBitCast(`self`, HotkeyManagerClass.self)
-            var hotkeyID = EventHotKeyID()
-            GetEventParameter(event, UInt32(kEventParamDirectObject), UInt32(typeEventHotKeyID), nil, sizeof(EventHotKeyID), nil, &hotkeyID)
-            
-            if let hotkey = Hotkey(id: hotkeyID.id), (_, handler) = self.handlers[hotkey] where hotkeyID.signature == self.signature {
-                dispatch_async(self.handlerQueue) {
-                    handler(hotkey)
-                }
-                return 0
-            } else {
-                return CallNextEventHandler(nextHandler, event)
-            }
-        }
-        
-        InstallEventHandler(target, handler, 1, &keyDownEventType, unsafeBitCast(self, UnsafeMutablePointer.self), nil)
-    }
-    
-    public func register(hotkey: Hotkey, handler: Handler) {
-        unregister(hotkey)
-        
-		let id = EventHotKeyID(signature: signature, id: hotkey.id)
-        var ref : EventHotKeyRef = nil
-        RegisterEventHotKey(hotkey.key.rawValue, hotkey.modifiers.rawValue, id, target, 0, &ref)
-        handlers[hotkey] = (ref, handler)
-    }
-    
-    public func unregister(hotkey: Hotkey) {
-		if let (ref, _) = handlers.removeValueForKey(hotkey) {
-			UnregisterEventHotKey(ref)
-		}
-    }
-}
-
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B608D2451D420C1F00561725 /* HotkeyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B608D2441D420C1F00561725 /* HotkeyManager.swift */; };
 		B662800E1D41FAE4008F25EB /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = B662800D1D41FAE4008F25EB /* README.md */; };
 		B677B3EE1D403D4C00D2A4CF /* ScriptKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B677B3ED1D403D4C00D2A4CF /* ScriptKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B677B3F51D403D4C00D2A4CF /* ScriptKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B677B3EA1D403D4C00D2A4CF /* ScriptKit.framework */; };
@@ -64,6 +65,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		B608D2441D420C1F00561725 /* HotkeyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HotkeyManager.swift; sourceTree = "<group>"; };
+		B608D2461D420F2E00561725 /* Playground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Playground.playground; sourceTree = "<group>"; };
 		B662800D1D41FAE4008F25EB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B677B3EA1D403D4C00D2A4CF /* ScriptKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ScriptKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B677B3ED1D403D4C00D2A4CF /* ScriptKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScriptKit.h; sourceTree = "<group>"; };
@@ -121,6 +124,7 @@
 		B677B3DE1D403C4900D2A4CF = {
 			isa = PBXGroup;
 			children = (
+				B608D2461D420F2E00561725 /* Playground.playground */,
 				B662800D1D41FAE4008F25EB /* README.md */,
 				B677B3EC1D403D4C00D2A4CF /* Source */,
 				B677B4101D40483000D2A4CF /* Example */,
@@ -144,6 +148,7 @@
 			children = (
 				B677B4021D403D6300D2A4CF /* Script.swift */,
 				B677B4041D403FEE00D2A4CF /* Hotkey.swift */,
+				B608D2441D420C1F00561725 /* HotkeyManager.swift */,
 				B68D73AE1D41AAC20098FC03 /* KeyCodes.swift */,
 				B68D73A11D41A4FD0098FC03 /* Utils.swift */,
 				B677B4071D4040C500D2A4CF /* Console.swift */,
@@ -355,6 +360,7 @@
 				B677B4031D403D6300D2A4CF /* Script.swift in Sources */,
 				B662800E1D41FAE4008F25EB /* README.md in Sources */,
 				B677B40A1D40421F00D2A4CF /* Files.swift in Sources */,
+				B608D2451D420C1F00561725 /* HotkeyManager.swift in Sources */,
 				B677B4081D4040C500D2A4CF /* Console.swift in Sources */,
 				B677B4051D403FEE00D2A4CF /* Hotkey.swift in Sources */,
 			);
