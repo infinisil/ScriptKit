@@ -15,7 +15,7 @@ final class MyScript : Script {
     func setUp(manager: Manager<MyScript>) {
         manager.terminationDelay = 5
         
-        HotkeyManager.register([.Command, .Shift] + kVK_ANSI_0) { hotkey in
+        HotkeyManager.register([.Command, .Shift] + .ANSI_0) { hotkey in
             manager.invokeMain(context: "⌘⇧-0 was pressed!")
         }
     }
