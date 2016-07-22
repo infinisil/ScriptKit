@@ -10,34 +10,34 @@ This is the part of this framework that's mostly done. It handles things like re
  2. Delete every file except `Info.plist`
  3. In the `Info.plist`, set the `Application is background only` key to `YES`
  4. Add a new Swift file called `main.swift` (If Xcode asks, you don't need a bridging header)
- 5. Implement a class conforming to `Script`. Example: 
- 
+ 5. Implement a class conforming to `Script`. Example:
+
 ```swift
 import ScriptKit
 
 final class MyScript : Script {
     func setUp(manager: Manager<MyScript>) {
         manager.terminationDelay = 5
-        
+
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3_000_000_000), manager.metaQueue) {
             manager.invokeMain(context: "This is three seconds later")
         }
     }
-    
+
     func main(manager: Manager<MyScript>, index: Int32, group: dispatch_group_t, context: String?) {
         if index == 0 {
             NSLog("First start of the script")
         }
-        
+
         if let message = context {
             NSLog(message)
         }
-        
+
         NSLog("Starting work on \(index). invocation")
         NSThread.sleepForTimeInterval(5)
         NSLog("Finished work on \(index). invocation")
     }
-    
+
     func tearDown(manager: Manager<MyScript>) {
         NSLog("Finished")
     }
@@ -48,7 +48,7 @@ MyScript.run()
 
 If you run this application and double-click again after 10 seconds, this is the output of Console:
 
-``` 
+```
 02:29:12 Example: First start of the script
 02:29:12 Example: Starting work on 0. invocation
 02:29:16 Example: This is three seconds later
@@ -67,9 +67,7 @@ The documentation describes pretty well what everything does.
 The `Hotkey` class is a very simple way of registering a new global Hotkey and execute some code when it gets triggered. The documentation is inexistent atm. It's useable like this:
 
 ```swift
-import Carbon // Needed for kVK... definitions, maybe this'll be an enum later
-
-HotkeyManager.register([.Command, .Shift] + kVK_ANSI_0)) { hotkey in
+HotkeyManager.register([.Command, .Shift] + .ANSI_0)) { hotkey in
     print("⌘⇧-0 was pressed!")
 }
 ```

@@ -6,7 +6,7 @@
 //  
 //
 
-import Foundation
+import typealias Carbon.FourCharCode
 
 extension String {
     /// The four char code representing the first four utf8 chars in this string
@@ -19,7 +19,7 @@ extension String {
     /// "Hello, test"   => 0x48656c6c
     /// "😂"            => 0xf09f9882
     /// ```
-    var fourCharCode : UInt32 {
+    var fourCharCode : FourCharCode {
         return utf8.prefix(4).reduce(0) { $0 << 8 | UInt32($1) }
     }
 }
