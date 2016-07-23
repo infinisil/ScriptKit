@@ -10,7 +10,7 @@
 // (This is the generators keyword ->) DOIT
 
 public extension Hotkey {
-	/// Virtual keycodes defined in `/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h`
+	/// Virtual keycodes defined in [`Carbon.HIToolbox.Events.h`](/System/Library/Frameworks/Carbon.framework/Versions/A/Frameworks/HIToolbox.framework/Versions/A/Headers/Events.h)
 	public enum Key : UInt32, CustomStringConvertible, Equatable {
 		case ANSI_A = 0x00
 		case ANSI_S = 0x01

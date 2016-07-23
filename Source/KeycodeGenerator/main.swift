@@ -23,7 +23,7 @@ if let range = contents.rangeOfString(keyword) {
 
 contents += "\n\n"
 contents += "public extension Hotkey {\n"
-contents += "\t/// Virtual keycodes defined in `\(sourceFilePath)`\n"
+contents += "\t/// Virtual keycodes defined in [`Carbon.HIToolbox.Events.h`](\(sourceFilePath))\n"
 contents += "\tpublic enum Key : UInt32, CustomStringConvertible, Equatable {\n"
 
 let sourceLines = try! String(contentsOfFile: sourceFilePath).characters.split("\n")

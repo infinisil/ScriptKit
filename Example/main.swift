@@ -17,6 +17,7 @@ final class MyScript : Script {
         
         HotkeyManager.register([.Command, .Shift] + .ANSI_0) { hotkey in
             manager.invokeMain(context: "\(hotkey) was pressed!")
+			return .Discard
         }
     }
     

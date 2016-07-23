@@ -64,15 +64,25 @@ The documentation describes pretty well what everything does.
 
 ###Hotkey class (about done)
 
-The `Hotkey` class is a very simple way of registering a new global Hotkey and execute some code when it gets triggered. The documentation is inexistent atm. It's useable like this:
+The `Hotkey` class is a very simple way of registering a new global Hotkey and execute some code when it gets triggered. It is decently documented. It's useable like this:
 
 ```swift
 HotkeyManager.register([.Command, .Shift] + .ANSI_0)) { hotkey in
     print("⌘⇧-0 was pressed!")
+	return .Discard // Don't let any other app get this key event
 }
 ```
 
 This has effect as long as the application is running (unless you use the `unregister` method).
+
+You can also register a hotkey handler by using the next key event:
+
+```swift
+HotkeyManager.registerByPress { hotkey in
+	print("\(hotkey) was pressed!)
+	return .Propagate
+}
+```
 
 ###Console (not done at all)
 
@@ -89,4 +99,6 @@ swiftREPL.input("let x = 10; print(x * 2)")
 
 - Xcode template for a script that starts at login, supporting the `Script` protocol
 - Convenient `NSStatusItem` support (the little icon it the menu bar)
+- Hotkey registering cancellation, more flexibility
+- The hotkey part should really be it's own project
 - Add tests
