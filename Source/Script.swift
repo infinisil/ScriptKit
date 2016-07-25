@@ -61,8 +61,6 @@ public protocol Script : class {
 	func tearDown(manager: Manager<Self>)
 }
 
-let nsecPerSec = Double(NSEC_PER_SEC)
-
 final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 	
 	/// Used to do all the script work
@@ -126,7 +124,7 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
             dispatch_group_notify(group, self.metaQueue) {
 				// Condition 2 (group done), check
 				
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * nsecPerSec)), self.metaQueue) {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), self.metaQueue) {
 					// Condition 3 (delay), check
 					
                     dispatch_group_leave(self.mainGroup)
@@ -136,14 +134,22 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 	}
 	
 	/// This property is immediately set to true when the `terminate` method has been called. You can repeatedly check this to act appropriately
-	internal(set) public var cancelled = false
+	internal(set) public var cancelled = false {
+		didSet {
+			if cancelled && !oldValue {
+				cancellationHandler?()
+			}
+		}
+	}
 	
 	/// A custom handler called when the `cancelled` property has been set from `false` to `true`. Default is nil
-	public var cancellationHandler : (() -> ())?
+	public var cancellationHandler : (() -> Void)?
 	
 	
 	/// Terminate the script unconditionally after a certain duration. Useful when errors occur that can't be recovered. Default is 0 (instantly).
 	public func terminate(after delay: NSTimeInterval = 0) {
+		cancelled = true
+		
 		func terminateNow() {
 			self.script.tearDown(self)
 			self.script = nil
@@ -153,9 +159,7 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 		if delay <= 0 {
 			terminateNow()
 		} else {
-			cancelled = true
-			cancellationHandler?()
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * nsecPerSec)), metaQueue, terminateNow)
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC))), metaQueue, terminateNow)
 		}
 	}
 	

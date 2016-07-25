@@ -88,8 +88,8 @@ class Console {
         }
     }
     
-    public func wait(max: NSTimeInterval = Double.infinity) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(max * nsecPerSec)), dispatch_get_main_queue()) {
+    func wait(max: NSTimeInterval = Double.infinity) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, Int64(max * Double(NSEC_PER_SEC))), dispatch_get_main_queue()) {
             self.task.terminate()
         }
         task.waitUntilExit()
