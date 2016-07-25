@@ -24,6 +24,19 @@
 		B68D73AF1D41AAC20098FC03 /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B68D73AE1D41AAC20098FC03 /* KeyCodes.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		B670DAB21D462EC20074EA29 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.md";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# Markdown shouldn't be processed in any way";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXContainerItemProxy section */
 		B677B3F61D403D4C00D2A4CF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -219,6 +232,7 @@
 				B677B3E81D403D4C00D2A4CF /* Resources */,
 			);
 			buildRules = (
+				B670DAB21D462EC20074EA29 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

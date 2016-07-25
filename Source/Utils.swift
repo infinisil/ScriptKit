@@ -8,7 +8,7 @@
 
 import typealias Carbon.FourCharCode
 
-extension String {
+public extension String {
     /// The four char code representing the last four utf8 chars in this string
     ///
     /// If the string contains less than 4 utf8 chars, it acts as if zeroes were prepended to it

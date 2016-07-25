@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Console {
+class Console {
     let task : NSTask
     let inHandle : NSFileHandle
     
@@ -24,7 +24,7 @@ public class Console {
         case Error(standardError: String)
     }
     
-    public static func which(command: String) throws -> String? {
+    static func which(command: String) throws -> String? {
         let task = NSTask()
         let (o, e) = (NSPipe(), NSPipe())
         task.standardInput = NSPipe()
@@ -49,7 +49,7 @@ public class Console {
         return nil
     }
     
-    public init(shell: String = "bash") throws {
+    init(shell: String = "bash") throws {
         task = NSTask()
         
         guard let path = try Console.which(shell) else {
@@ -73,13 +73,13 @@ public class Console {
         task.launch()
     }
     
-    public var running : Bool {
+    var running : Bool {
         return task.running
     }
     
     let newLine = "\n".dataUsingEncoding(NSUTF8StringEncoding)!
     
-    public func input(line: String) {
+    func input(line: String) {
         if let data = line.dataUsingEncoding(NSUTF8StringEncoding) {
             inHandle.writeData(data)
             inHandle.writeData(newLine)

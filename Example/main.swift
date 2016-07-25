@@ -6,7 +6,7 @@
 //  
 //
 
-import ScriptKit
+@testable import ScriptKit
 import Carbon
 
 final class MyScript : Script {

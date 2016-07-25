@@ -8,23 +8,6 @@
 
 import Cocoa
 
-/// Manages various aspects of a script. Use this to configure your script
-//public protocol Manager : class {
-//	associatedtype ScriptType : Script
-//	
-//	/// The queue on which the scripts main method is called. You can use this queue if you need to delegate asynchronous work.
-//	var workQueue : DispatchQueue { get }
-//	
-//	/// The duration of inactivity needed for the script to terminate.
-//	var terminationDelay : TimeInterval { get set }
-//	
-//	/// Terminate the script unconditionally after a certain duration. Useful when errors occur that can't be recovered.
-//	func terminate(after: TimeInterval)
-//	
-//	/// Manually start another invocation of the main method.
-//	func invokeMain(value: ScriptType.Value)
-//}
-
 /**
 Protocol for the functionality of a script
 
@@ -93,6 +76,8 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 	
 	/// Starting index
 	var index : Int32 = -1
+	
+	/// The duration of inactivity needed for the script to terminate.
 	public var terminationDelay: NSTimeInterval = 0
 	var script : S!
 	
@@ -101,6 +86,7 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 		super.init()
 	}
 
+	/// Do not call this yourself, in the future this should not be public
     public func applicationDidFinishLaunching(notification: NSNotification) {
         script.setUp(self)
         work()
@@ -109,12 +95,14 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
             self.terminate()
         }
     }
-    
+	
+	/// Do not call this yourself, in the future this should not be public
 	public func applicationShouldHandleReopen(sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
 		work()
 		return false
 	}
 	
+	/// Manually start another invocation of the main method.
     public func invokeMain(context context: S.Context? = nil) {
 		work(context)
 	}
@@ -147,10 +135,14 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 		}
 	}
 	
+	/// This property is immediately set to true when the `terminate` method has been called. You can repeatedly check this to act appropriately
 	internal(set) public var cancelled = false
 	
+	/// A custom handler called when the `cancelled` property has been set from `false` to `true`. Default is nil
 	public var cancellationHandler : (() -> ())?
 	
+	
+	/// Terminate the script unconditionally after a certain duration. Useful when errors occur that can't be recovered. Default is 0 (instantly).
 	public func terminate(after delay: NSTimeInterval = 0) {
 		func terminateNow() {
 			self.script.tearDown(self)
@@ -167,6 +159,7 @@ final public class Manager<S: Script>: NSObject, NSApplicationDelegate {
 		}
 	}
 	
+	/// Do not call this yourself, in the future this should not be public
 	public func applicationShouldTerminate(sender: NSApplication) -> NSApplicationTerminateReply {
 		return .TerminateNow
 	}

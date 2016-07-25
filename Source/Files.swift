@@ -8,14 +8,14 @@
 
 import Foundation
 
-public struct Path : StringLiteralConvertible {
+struct Path : StringLiteralConvertible {
     let path : String
     
-    public init(string: String) {
+    init(string: String) {
         path = NSString(string: string).stringByExpandingTildeInPath
     }
     
-    public init(stringLiteral value: String) {
+    init(stringLiteral value: String) {
         self.init(string: value)
     }
 }
@@ -30,19 +30,19 @@ extension StringLiteralConvertible where StringLiteralType == String {
     }
 }
 
-public func touch(path: Path) -> NSFileHandle {
+func touch(path: Path) -> NSFileHandle {
     if !NSFileManager.defaultManager().fileExistsAtPath(path.path) {
         NSFileManager.defaultManager().createFileAtPath(path.path, contents: nil, attributes: nil)
     }
     return NSFileHandle(forUpdatingAtPath: path.path)!
 }
     
-public func >(lhs: String, rhs: NSFileHandle) {
+func >(lhs: String, rhs: NSFileHandle) {
     rhs.truncateFileAtOffset(0)
     rhs.writeData(lhs.dataUsingEncoding(NSUTF8StringEncoding)!)
 }
     
-public func >>(lhs: String, rhs: NSFileHandle) {
+func >>(lhs: String, rhs: NSFileHandle) {
     rhs.seekToEndOfFile()
     rhs.writeData(lhs.dataUsingEncoding(NSUTF8StringEncoding)!)
 }
