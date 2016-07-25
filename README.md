@@ -1,8 +1,24 @@
-# ScriptKit - Convenient Scripts in Swift (WIP)
+# ScriptKit - Convenient Scripts in Swift
 
 This framework stems from not wanting to get into complicated stuff when you just want to write a short script in Swift. By script I am not referring to a single interpreted file, but rather a small application that does useful things, mostly without UI.
 
-###Script protocol (mostly done)
+##Installation
+
+###Manual
+
+- Download the source code of the [latest release](https://github.com/Infinisil/ScriptKit/archive/master.zip)
+- Copy all files in the `/Source` directory into your macOS project
+
+###Carthage
+
+- Add this line to your Cartfile:
+
+		github "infinisil/ScriptKit"
+
+- Run `carthage update --platform OSX`
+- Add the build framework to your project by dragging it from Finder into the "Embedded Binaries" section under the "General" section of your project settings
+
+###Script protocol (about done, but I got some ideas)
 
 This is the part of this framework that's mostly done. It handles things like restarts of the script, waiting for a certain amount of time before terminating and the Apps run loop. To use it for your script:
 
@@ -62,7 +78,7 @@ If you run this application and double-click again after 10 seconds, this is the
 
 The documentation describes pretty well what everything does.
 
-###Hotkey class (about done)
+###Hotkey class (about done, but have some ideas)
 
 The `Hotkey` class is a very simple way of registering a new global Hotkey and execute some code when it gets triggered. It is decently documented. It's useable like this:
 
@@ -84,7 +100,7 @@ HotkeyManager.registerByPress { hotkey in
 }
 ```
 
-###Console (not done at all)
+###Console (not done at all, not public for now)
 
 Console is a class representing a running console. The standard initializer uses `bash` (should probably be changed to `$SHELL`), but in theory it's possible to use any shell/command that supports interaction (`fish` doesn't want to work for some reason though). It's for example possible to use the Swift REPL (Swiftception):
 
@@ -93,7 +109,7 @@ let swiftREPL = try! Console(shell: "swift")
 swiftREPL.input("let x = 10; print(x * 2)")
 ```
 
-###File utilities (so not done it's not even worth mentioning)
+###File utilities (so not done it's not even worth mentioning, also not public)
 
 ##Ideas and stuff to do
 
