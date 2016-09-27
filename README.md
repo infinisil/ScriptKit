@@ -32,31 +32,31 @@ This is the part of this framework that's mostly done. It handles things like re
 import ScriptKit
 
 final class MyScript : Script {
-    func setUp(manager: Manager<MyScript>) {
-        manager.terminationDelay = 5
+	func setUp(manager: Manager<MyScript>) {
+		manager.terminationDelay = 5
 
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3_000_000_000), manager.metaQueue) {
-            manager.invokeMain(context: "This is three seconds later")
-        }
-    }
+		manager.metaQueue.asyncAfter(deadline: .now() + 3) {
+			manager.invokeMain(context: "This is three seconds later")
+		}
+	}
 
-    func main(manager: Manager<MyScript>, index: Int32, group: dispatch_group_t, context: String?) {
-        if index == 0 {
-            NSLog("First start of the script")
-        }
+	func main(manager: Manager<MyScript>, index: Int32, group: DispatchGroup, context: String?) {
+		if index == 0 {
+			NSLog("First start of the script")
+		}
 
-        if let message = context {
-            NSLog(message)
-        }
+		if let message = context {
+			NSLog(message)
+		}
 
-        NSLog("Starting work on \(index). invocation")
-        NSThread.sleepForTimeInterval(5)
-        NSLog("Finished work on \(index). invocation")
-    }
+		NSLog("Starting work on \(index). invocation")
+		Thread.sleep(forTimeInterval: 5)
+		NSLog("Finished work on \(index). invocation")
+	}
 
-    func tearDown(manager: Manager<MyScript>) {
-        NSLog("Finished")
-    }
+	func tearDown(manager: Manager<MyScript>) {
+		NSLog("Finished")
+	}
 }
 
 MyScript.run()
@@ -96,7 +96,7 @@ You can also register a hotkey handler by using the next key event:
 ```swift
 HotkeyManager.registerByPress { hotkey in
 	print("\(hotkey) was pressed!)
-	return .Propagate
+	return .propagate
 }
 ```
 
