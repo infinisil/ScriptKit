@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct Path : StringLiteralConvertible {
+struct Path : ExpressibleByStringLiteral {
     let path : String
     
     init(string: String) {
-        path = NSString(string: string).stringByExpandingTildeInPath
+        path = NSString(string: string).expandingTildeInPath
     }
     
     init(stringLiteral value: String) {
@@ -20,7 +20,7 @@ struct Path : StringLiteralConvertible {
     }
 }
 
-extension StringLiteralConvertible where StringLiteralType == String {
+extension ExpressibleByStringLiteral where StringLiteralType == String {
     public init(extendedGraphemeClusterLiteral value: String) {
         self.init(stringLiteral: value)
     }
@@ -30,19 +30,19 @@ extension StringLiteralConvertible where StringLiteralType == String {
     }
 }
 
-func touch(path: Path) -> NSFileHandle {
-    if !NSFileManager.defaultManager().fileExistsAtPath(path.path) {
-        NSFileManager.defaultManager().createFileAtPath(path.path, contents: nil, attributes: nil)
+func touch(_ path: Path) -> FileHandle {
+    if !FileManager.default.fileExists(atPath: path.path) {
+        FileManager.default.createFile(atPath: path.path, contents: nil, attributes: nil)
     }
-    return NSFileHandle(forUpdatingAtPath: path.path)!
+    return FileHandle(forUpdatingAtPath: path.path)!
 }
     
-func >(lhs: String, rhs: NSFileHandle) {
-    rhs.truncateFileAtOffset(0)
-    rhs.writeData(lhs.dataUsingEncoding(NSUTF8StringEncoding)!)
+func >(lhs: String, rhs: FileHandle) {
+    rhs.truncateFile(atOffset: 0)
+    rhs.write(lhs.data(using: .utf8)!)
 }
     
-func >>(lhs: String, rhs: NSFileHandle) {
+func >>(lhs: String, rhs: FileHandle) {
     rhs.seekToEndOfFile()
-    rhs.writeData(lhs.dataUsingEncoding(NSUTF8StringEncoding)!)
+    rhs.write(lhs.data(using: .utf8)!)
 }

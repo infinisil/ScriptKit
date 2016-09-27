@@ -11,7 +11,7 @@ import XCTest
 
 class ScriptKitTests: XCTestCase {
     func testFourCharCode() {
-        func t(string: String, _ fourCharCode: UInt32, line: UInt = #line) {
+        func t(_ string: String, _ fourCharCode: UInt32, line: UInt = #line) {
             let actual = string.fourCharCode
             XCTAssertEqual(actual, fourCharCode, "Four char code of \"\(string)\" should be 0x\(String(fourCharCode, radix: 16)) but was 0x\(String(actual, radix: 16))", line: line)
         }

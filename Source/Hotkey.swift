@@ -52,7 +52,7 @@ extension Hotkey {
 	
 	The bit representation is the same as those defined in `Carbon.HIToolbox.Events.h` (`controlKey`, etc.)
 	*/
-    public struct Modifiers : OptionSetType, CustomStringConvertible, Equatable {
+    public struct Modifiers : OptionSet, CustomStringConvertible, Equatable {
         public let rawValue: UInt32
         public init(rawValue: UInt32) {
             self.rawValue = rawValue
@@ -66,7 +66,7 @@ extension Hotkey {
 		public var description: String {
 			var strings : [String] = []
 
-			func add(modifier: Modifiers, _ description: String) {
+			func add(_ modifier: Modifiers, _ description: String) {
 				if contains(modifier) { strings.append(description) }
 			}
 			
@@ -75,7 +75,7 @@ extension Hotkey {
 			add(.Option, "Option")
 			add(.Command, "Command")
 			
-			return "[\(strings.joinWithSeparator(", "))]"
+			return "[\(strings.joined(separator: ", "))]"
 		}
     }
 }
@@ -85,10 +85,10 @@ extension CGEventFlags {
 	/// - Note: Even though `CGEventFlags` is declared as an enum, it should actually be an `OptionSetType` and can therefore represent combination of the declared cases
 	var modifiers : Hotkey.Modifiers {
 		var mods : Hotkey.Modifiers = []
-		if CGEventFlags.MaskControl.rawValue & rawValue > 0 { mods.unionInPlace(.Control) }
-		if CGEventFlags.MaskShift.rawValue & rawValue > 0 { mods.unionInPlace(.Shift) }
-		if CGEventFlags.MaskAlternate.rawValue & rawValue > 0 { mods.unionInPlace(.Option) }
-		if CGEventFlags.MaskCommand.rawValue & rawValue > 0 { mods.unionInPlace(.Command) }
+		if CGEventFlags.maskControl.rawValue & rawValue > 0 { mods.formUnion(.Control) }
+		if CGEventFlags.maskShift.rawValue & rawValue > 0 { mods.formUnion(.Shift) }
+		if CGEventFlags.maskAlternate.rawValue & rawValue > 0 { mods.formUnion(.Option) }
+		if CGEventFlags.maskCommand.rawValue & rawValue > 0 { mods.formUnion(.Command) }
 		return mods
 	}
 }

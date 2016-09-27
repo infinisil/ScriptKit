@@ -13,15 +13,17 @@ final class MyScript : Script {
     let swiftREPL = try! Console(shell: "swift")
     
     func setUp(manager: Manager<MyScript>) {
+		kVK_ANSI_0
+		
         manager.terminationDelay = 5
         
-        HotkeyManager.register([.Command, .Shift] + .ANSI_0) { hotkey in
+        HotkeyManager.register(hotkey: [.Command, .Shift] + .ansi_0) { hotkey in
             manager.invokeMain(context: "\(hotkey) was pressed!")
-			return .Discard
+			return .discard
         }
     }
     
-    func main(manager: Manager<MyScript>, index: Int32, group: dispatch_group_t, context: String?) {
+    func main(manager: Manager<MyScript>, index: Int32, group: DispatchGroup, context: String?) {
         if index == 0 {
             swiftREPL.input("let x = 10; print(x * 2)")
             NSLog("First start of the script")
@@ -32,7 +34,7 @@ final class MyScript : Script {
         }
         
         NSLog("Starting work on \(index). invocation")
-        NSThread.sleepForTimeInterval(5)
+        Thread.sleep(forTimeInterval: 5)
         NSLog("Finished work on \(index). invocation")
         
         
