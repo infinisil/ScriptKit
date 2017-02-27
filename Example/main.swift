@@ -13,11 +13,9 @@ final class MyScript : Script {
     let swiftREPL = try! Console(shell: "swift")
     
     func setUp(manager: Manager<MyScript>) {
-		kVK_ANSI_0
-		
         manager.terminationDelay = 5
-        
-        HotkeyManager.register(hotkey: [.Command, .Shift] + .ansi_0) { hotkey in
+		
+        HotkeyManager.register(hotkey: [.Command, .Shift] + .ANSI_0) { hotkey in
             manager.invokeMain(context: "\(hotkey) was pressed!")
 			return .discard
         }
