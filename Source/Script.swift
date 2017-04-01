@@ -178,7 +178,7 @@ public extension Script {
 		app.delegate = manager
 		app.performSelector(onMainThread: #selector(NSApplication.run), with: nil, waitUntilDone: true)
 		
-		// The application seems to quit the main thread when terminating (even when just calling `stop`), so we might as well make this function `@noreturn`.
+		// The application seems to quit the main thread when terminating (even when just calling `stop`), so we might as well make this function return `Never`.
 		fatalError("Code made it past terminate wut")
 	}
 }

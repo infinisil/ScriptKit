@@ -85,8 +85,18 @@ open class HotkeyManagerClass {
 				return .passRetained(event)
 			}
 		}
+
+		guard let eventTap = CGEvent.tapCreate(
+			tap: .cgSessionEventTap,
+			place: .headInsertEventTap,
+			options: .defaultTap,
+			eventsOfInterest: UInt64(1 << CGEventType.keyDown.rawValue),
+			callback: callback,
+			userInfo: unsafeBitCast(self, to: UnsafeMutablePointer.self))
+		else {
+			fatalError("Key up/down events cannot be received unless the application is either run as root or is added in System Preferences > Security & Privacy > Privacy > Accessibility")
+		}
 		
-		eventTap = CGEvent.tapCreate(tap: .cgSessionEventTap, place: .headInsertEventTap, options: .defaultTap, eventsOfInterest: UInt64(1 << CGEventType.keyDown.rawValue), callback: callback, userInfo: unsafeBitCast(self, to: UnsafeMutablePointer.self))!
 		CGEvent.tapEnable(tap: eventTap, enable: false)
 		
 		let source = CFMachPortCreateRunLoopSource(nil, eventTap, 0)
@@ -128,7 +138,6 @@ open class HotkeyManagerClass {
 		var ref : EventHotKeyRef? = nil
 		RegisterEventHotKey(hotkey.key.rawValue, hotkey.modifiers.rawValue, id, target, 0, &ref)
 		
-//		let x = (ref, handler)
 		handlers[hotkey] = (ref!, handler)
 	}
 	
